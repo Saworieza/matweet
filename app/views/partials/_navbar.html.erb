@@ -1,0 +1,50 @@
+<% if user_signed_in? %>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <nav class="main-nav">
+        <%= link_to root_url, class: "" do %>
+          <i class="fa fa-home"></i> Home 
+        <% end %>
+        <%= link_to root_path, class: "" do %>
+          <i class="fa fa-bell-o"> </i> Notifications
+        <% end %>
+        <%= link_to messages_path, class: "" do %>
+          <i class="fa fa-envelope-o"></i> Messages
+        <% end %>
+      </nav>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+          <%= render 'partials/search' %>
+          <li>
+            <a href="#", class="profile-image dropdown-toggle" data-toggle="dropdown", role="button", aria-expanded="false">
+              <%= image_tag 'avatar.jpg', class: "avatar-xs" %>
+              <%#= image_tag current_user.avatar.url || 'avatar.jpg', class: "avatar-xs" %>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <%= link_to "#{current_user.name}<br><b>@#{current_user.name}</b>".html_safe, user_path(current_user) %>
+                </li>
+              <li class="divider"></li>
+              <li>
+                <%= link_to "Settings", user_path(current_user.name.downcase) %></li>
+              <li><%= link_to('Sign out', destroy_user_session_path, method: :delete) %></li>
+            </ul>
+          </li>
+          <form class="navbar-form navbar-right">
+            <button id="new-tweet" type="button" data-toggle="modal" data-target="#new-tweet-modal" class="btn btn-primary"><i class="fa fa-paper-plane"></i> Tweet</button>
+          </form>
+      </ul>
+    </div>
+  </div>
+</nav>
+<% else %>
+  <li><%= link_to('Sign out', new_user_session_path) %></li>
+<% end %>

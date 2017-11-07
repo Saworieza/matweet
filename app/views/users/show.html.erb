@@ -1,0 +1,40 @@
+<div class="card">
+  <div class="cover" data-cover="<%#= @user.cover || 'background.jpg' %>">
+    <%= image_tag 'avatar avatar.jpg', class: "avatar" %>
+    <%#= image_tag user.avatar.url || 'avatar.jpg', class: "avatar" %>
+  </div>
+  <div class="about">
+    <h3 class="name"><%= link_to @user.name, user_path(@user.username.downcase) %></h3>
+    <h5 class="username"><b>@<%= link_to @user.username, user_path(@user.username.downcase) %></b></h5>
+    <span class="content">
+      <% unless @user.about.blank? %>
+        <%= auto_link(parse(@user.about), html: { target: '_blank' }) %>
+      <% end %>
+    </span>
+      <div class="row">
+        <% unless @user.location.blank? %>
+          <h5><i class="fa fa-map-marker"></i> <%= @user.location %></h5>
+        <% end %>
+        <% unless @user.website.blank? %>
+          <h5><i class="fa fa-link"></i> <%= link_to @user.website, @user.website %></h5>
+        <% end %>
+        <h5><i class="fa fa-clock-o"></i> Joined <%= @user.created_at %></h5>
+      </div>
+      <div class="stats">
+        <div class="row">
+          <div class="col-lg-4 text-center">
+           
+          </div>
+          <%= render 'partials/stats' %>
+        </div>
+      </div>
+  </div>
+</div>
+<span>
+<% if @user == current_user %>
+  <%= link_to 'Edit Profile', edit_user_path(@user.username), class: 'btn edit-button' %>
+<% else %>
+      <!-- sth here -->
+<% end %>
+</span>
+

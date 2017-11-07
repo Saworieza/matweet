@@ -1,0 +1,3 @@
+$("#like_<%= @tweet.id %>").removeClass('glyphicon-heart-empty').addClass('glyphicon-heart');
+$("#like_<%= @tweet.id %>").attr("href", '/tweets/<%= @tweet.id %>/unlike');
+$("#likes_<%= @tweet.id %>").html("<%= j (render partial: 'partials/likes', locals: { tweet: @tweet } ) %>");

@@ -1,0 +1,91 @@
+<div class="row">
+  <div class="col-lg-3">
+    <div class="">
+      <div class="well stats">
+        <h5 class=""><b>Trends</b></h5>
+        <%= render 'partials/hashtags' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="row">
+      <div class="col-lg-12">
+      	<div class="well">
+          <h5 class=""><b>Who To Follow</b> <%= @users.count %></h5>
+          <p> Follow more people from the suggestions below, tailored just for you. </p>
+        </div>
+        <div class="well">
+          <%= form_tag(users_path, :method => "get", id: "search-form", class: "t") do %>
+            <div class: "form-group">
+              <div class="input-group stylish-input-group">
+              <%= text_field_tag :search, params[:search], placeholder: "Search using a persons full name or username", class: "form-control" %>
+                <span class="input-group-addon">
+                  <button type="submit">
+                    <span class="glyphicon glyphicon-search"></span>
+                  </button>
+                </span>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        
+        <div class="well">
+          <div class="suggestions">
+            <% @users.each do |user| %>
+              <div class="suggested-user content">
+                <div class="avatar-content">
+                  <%= image_tag 'avatar.jpg', class: "suggested-avatar" %>
+    						  <%#= image_tag user.avatar.url || 'avatar.jpg', class: "suggested-avatar" %>
+                </div>
+                <div class="suggestion-details">
+                  <span class= "suggested-name">
+    						    <%= user.name %>
+                  </span>
+      						<%= link_to user_path(user.username.downcase) do %>
+      							<span class= "suggested-username">@<%= user.username %></span><br>
+      						<% end %>
+      						<p><%= user.about %><br></p>
+      						
+      						<br>
+                </div>
+              </div>
+    				<% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div id="feed" class="well feed">
+          <%#= render(@tweets) || "No Tweets" %>
+          <% if @users.blank? %>
+            <h4>There are no Users with the name <%= params[:search] %>.</h4>
+          <% end %>
+        </div>
+       <!--  <div id="load-more">
+          <%#= render 'partials/load_more', items: @tweets %>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3">
+    <div class="">
+      <div class="well stats">
+        <%#= render 'partials/suggestions' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

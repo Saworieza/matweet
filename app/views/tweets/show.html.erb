@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>created by:</strong>
+  <%= @tweet.user.username %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @tweet.body %>
+</p>
+
+<p>
+  <strong>Tweet:</strong>
+  <%= @tweet.tweet_id %>
+</p>
+
+<p>
+<% @tweet.images.each do |image| %>
+    <%= image_tag image.url.to_s %><br>
+<% end %>
+</p>
+
+<%= link_to 'Edit', edit_tweet_path(@tweet) %> |
+<%= link_to 'Back', tweets_path %><br>
+<%= render 'partials/comments', tweet: @tweet %>
+    <%= render 'partials/retweet', tweet: @tweet %>
+  	<%= render 'partials/likes', tweet: @tweet %>
+
+<h3>Comments</h3>
+
+<%= form_for [@tweet, Comment.new] do |f| %>
+<%= f.text_area :body, placeholder: "Add a comment" %><br/>
+<%= f.submit "Add Comment" %>
+<% end %>
+
+<ul>
+  <%= render(partial: 'comments/comment', collection: @tweet.comments) %>
+</ul>

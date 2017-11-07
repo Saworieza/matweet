@@ -1,0 +1,17 @@
+<%= form_tag(users_path, :method => "get", id: "search-form", class: "navbar-form navbar-left") do %>
+<!-- <form class="navbar-left navbar-form"> -->
+  <div class: "form-group">
+  	<div class="input-group stylish-input-group">
+      <!-- <input type="text" name="" placeholder="Search Users", class="form-control"> -->
+    	<%= text_field_tag :search, params[:search], placeholder: "Search Users", class: "form-control" %>
+    	<span class="input-group-addon">
+    		<button type="submit">
+    			<span class="glyphicon glyphicon-search"></span>
+    		</button>
+    	</span>
+    </div>
+  </div>
+<!-- </form> -->
+<% end %>
+
+

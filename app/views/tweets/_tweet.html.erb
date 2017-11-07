@@ -1,0 +1,16 @@
+<div>
+  <div>Posted by <%= tweet.user.username %></div>
+  <p>
+  	<%= auto_link(parse(truncate(tweet.body, :ommision => "... Read More", :length => 100)), html: { target: '_blank' }) %> <br>
+     <% tweet.images.each do |image| # for each image %>
+      <%= image_tag(image.url) %>
+    <% end %>
+
+  	<%= link_to 'Read More', tweet %><br>
+  </p>
+  <div>
+    <%= render 'partials/comments', tweet: tweet %>
+    <%= render 'partials/retweet', tweet: tweet %>
+  	<%= render 'partials/likes', tweet: tweet %>
+  </div>
+</div>

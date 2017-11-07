@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Matweet</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+    <%= render 'partials/navbar' %>
+    <div class="container">
+      <%= yield %>
+    </div>
+    <%= render 'partials/tweet_modal' %>
+    <%= render 'partials/tweet' %>
+  </body>
+</html>
