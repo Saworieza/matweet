@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   def show
   	# @user = User.find(params[:id])
     @user = User.friendly.find(params[:id])
-    # @tweets = @user.tweets.paginate(page: params[:page]).order('created_at DESC')
+    @tweets = @user.tweets.order('created_at DESC')
 
     # @suggestions = User.where.not(id: @current_user).paginate(page: params[:page]).order('RANDOM()').limit(3)
   end
@@ -42,14 +42,14 @@ class UsersController < ApplicationController
   def following
     @title = "Following"
     @user  = User.find(params[:id])
-    # @users = @user.following.paginate(page: params[:page])
+    @users = @user.following
     render 'show_follow'
   end
 
   def followers
     @title = "Followers"
     @user  = User.find(params[:id])
-    # @users = @user.followers.paginate(page: params[:page])
+    @users = @user.followers
     render 'show_follow'
   end
 

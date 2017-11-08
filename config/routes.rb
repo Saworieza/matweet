@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   end
 
   resources :activities
+  get 'notifications', to: 'activities#index', as: :notifications
   resources :users do
     member do
       get :following, :followers

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171108044259) do
+ActiveRecord::Schema.define(version: 20171108114346) do
 
   create_table "activities", force: :cascade do |t|
     t.string   "trackable_type"
@@ -113,9 +113,13 @@ ActiveRecord::Schema.define(version: 20171108044259) do
     t.integer  "user_id"
     t.text     "body"
     t.integer  "tweet_id"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.string   "images",     default: "--- []\n"
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.string   "images",             default: "--- []\n"
+    t.string   "media_file_name"
+    t.string   "media_content_type"
+    t.integer  "media_file_size"
+    t.datetime "media_updated_at"
   end
 
   create_table "users", force: :cascade do |t|

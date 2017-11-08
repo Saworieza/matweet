@@ -16,9 +16,7 @@
 </p>
 
 <p>
-<% @tweet.images.each do |image| %>
-    <%= image_tag image.url.to_s %><br>
-<% end %>
+  <%= image_tag @tweet.media.url(:medium) if @tweet.media?  %>
 </p>
 
 <%= link_to 'Edit', edit_tweet_path(@tweet) %> |

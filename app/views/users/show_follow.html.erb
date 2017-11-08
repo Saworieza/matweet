@@ -8,10 +8,11 @@
     </section>
     <section class="stats">
       <%= render 'partials/stats' %>
-      <% if @users.try(:any?) %>
+       <% if @users.any? %>
         <div class="user_avatars">
           <% @users.each do |user| %>
-            <%= link_to user.username, user %>
+            <%= link_to (image_tag 'avatar.jpg', class: "suggested-avatar"), user %>
+            <%#= link_to gravatar_for(user, size: 30), user %>
           <% end %>
         </div>
       <% end %>
@@ -19,11 +20,6 @@
   </aside>
   <div class="col-md-8">
     <h3><%= @title %></h3>
-    <% if @users.try(:any?) %>
-      <ul class="users follow">
-        <%= render @users %>
-      </ul>
-      <%#= will_paginate %>
-    <% end %>
+      <%= render @users %>
   </div>
 </div>

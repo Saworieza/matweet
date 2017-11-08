@@ -1,5 +1,5 @@
 <% if activity.trackable %>
-	tweeted <%= link_to activity.trackable.body, activity.trackable %>
+	posted <%= link_to truncate(activity.trackable.body, :ommision => "... Read More", :length => 50), activity.trackable %>
 <% else %>
 	which has since been removed
 <% end %>

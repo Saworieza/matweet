@@ -12,9 +12,19 @@
         <%= link_to root_url, class: "" do %>
           <i class="fa fa-home"></i> Home 
         <% end %>
-        <%= link_to activities_path, class: "" do %>
+        <%= link_to notifications_path, class: "" do %>
           <i class="fa fa-bell-o"> </i> Notifications
         <% end %>
+        <!-- <a class="dropdown notification-dropdown">
+          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            5 <span class="glyphicon glyphicon-flag"></span> 
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="left:20rem;">
+            <li class="dropdown-header text-center">Notifications</li>
+            <li><a href="#">Notification 1</a></li>
+            <li><a href="#">Notification 2</a></li>
+          </ul>
+        </a> -->
         <%= link_to messages_path, class: "" do %>
           <i class="fa fa-envelope-o"></i> Messages
         <% end %>
@@ -34,7 +44,7 @@
                 </li>
               <li class="divider"></li>
               <li>
-                <%= link_to "Settings", user_path(current_user.name.downcase) %></li>
+                <%= link_to "Settings", user_path(current_user.username.downcase) %></li>
               <li><%= link_to('Sign out', destroy_user_session_path, method: :delete) %></li>
             </ul>
           </li>

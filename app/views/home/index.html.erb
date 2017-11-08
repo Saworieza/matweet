@@ -14,10 +14,12 @@
 	<div class="col-lg-6">
 		<h1>Tweets</h1>
 			<%# @tweets.each do |tweet| %>
-			<% @feed_items.each do |tweet| %>
-			  <hr />
-			  <%= render partial: "tweets/#{tweet.tweet_type}", locals: {tweet: tweet} %>
-			<% end %>
+			<div id="feed" class="feed">
+				<% @feed_items.each do |tweet| %>
+				  <hr />
+				  <%= render partial: "tweets/#{tweet.tweet_type}", locals: {tweet: tweet} %>
+				<% end %>
+			</div>
 			<!-- <br> -->
 	</div>
 	<div class="col-lg-3">

@@ -2,9 +2,7 @@
   <div>tweeted by <%= tweet.user.username %></div>
   <p>
   	<%= auto_link(parse(truncate(tweet.body, :ommision => "... Read More", :length => 100)), html: { target: '_blank' }) %> <br>
-     <% tweet.images.each do |image| # for each image %>
-      <%= image_tag(image.url) %>
-    <% end %>
+     <%= image_tag tweet.media.url(:medium) if tweet.media?  %>
 
   	<%= link_to 'Read More', tweet %><br>
   </p>

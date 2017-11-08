@@ -1,0 +1,24 @@
+<% if @users.try(:any?) %>
+	<div class="well">
+	  <div class="suggestions">
+	    <% @users.each do |user| %>
+	      <div class="suggested-user content">
+	        <div class="avatar-content">
+	          <%= image_tag 'avatar.jpg', class: "suggested-avatar" %>
+		  			<%#= image_tag user.avatar.url || 'avatar.jpg', class: "suggested-avatar" %>
+	        </div>
+	        <div class="suggestion-details">
+	          <span class= "suggested-name">
+							<%= user.name %>
+	          </span>
+						<%= link_to user_path(user.username.downcase) do %>
+							<span class= "suggested-username">@<%= user.username %></span><br>
+						<% end %>
+						<p><%= user.about %><br></p>
+						<br>
+	        </div>
+	      </div>
+			<% end %>
+	  </div>
+	</div>
+ <% end %>

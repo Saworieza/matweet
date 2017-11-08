@@ -21,7 +21,8 @@ gem 'acts_as_votable'
 gem 'friendly_id'
 gem 'public_activity'
 gem 'twitter-typeahead-rails' #go figure
-gem "carrierwave", :github => "carrierwaveuploader/carrierwave"
+gem "paperclip"
+
 
 
 group :development, :test do

@@ -1,1 +1,1 @@
-added comment to <%= link_to activity.trackable.tweet.body, activity.trackable.tweet %>
+commented on <%= link_to truncate(activity.trackable.tweet.body, :ommision => "... Read More", :length => 50), activity.trackable.tweet %>
