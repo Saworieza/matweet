@@ -1,0 +1,5 @@
+<% if activity.trackable %>
+	followed <%= activity.trackable.followed_id %><%#= link_to activity.trackable, activity.trackable %>
+<% else %>
+	which has since been removed
+<% end %>
