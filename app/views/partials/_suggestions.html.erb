@@ -1,0 +1,19 @@
+<h5 class=""><b>Who to follow</b> <%= link_to 'View All', users_path %></h5>
+<div class="suggestions">
+	<% @suggestions.each do |user| %>
+		<div class="suggested-user content">
+		  <div class="avatar-content">
+		  		<%= image_tag 'avatar.jpg', class: "suggested-avatar" %>
+				<%#= image_tag user.avatar.url || 'avatar.jpg', class: "suggested-avatar" %>
+			</div>
+			<div class="suggestion-details">
+				<span class= "suggested-name"><%= link_to user.name, user_path(user.username.downcase) %></span>
+				<%#= link_to user do %>
+				<span class= "suggested-username">@<%= user.username %></span>
+				<%# end %>
+				<br>
+				<%#= render 'partials/follow', user: user %>
+			</div>
+		</div>
+	<% end %>
+</div>

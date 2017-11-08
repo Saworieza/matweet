@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   def index
   	@users = User.order('created_at DESC')
     # @users = User.where.not(id: @current_user).order('RANDOM()').paginate(page: params[:page]).limit(100)
-    # @suggestions = User.where.not(id: @current_user).paginate(page: params[:page]).order('RANDOM()').limit(3)
+    @suggestions = User.where.not(id: @current_user).order('RANDOM()').limit(3)
     @hashtags = SimpleHashtag::Hashtag.order('created_at DESC').limit(10)
 
     if params[:search]

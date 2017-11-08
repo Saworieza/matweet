@@ -16,17 +16,22 @@
 			<%# @tweets.each do |tweet| %>
 			<div id="feed" class="feed">
 				<% @feed_items.each do |tweet| %>
-				  <hr />
 				  <%= render partial: "tweets/#{tweet.tweet_type}", locals: {tweet: tweet} %>
 				<% end %>
 			</div>
 			<!-- <br> -->
 	</div>
 	<div class="col-lg-3">
-		<ul>
-			<% @users.each do |user| %>
-			  <li><%= link_to user.name, conversations_path(user_id: user), remote: true, method: :post %></li>
-      <% end %>
-		</ul>
+		<div class="well">
+			<%= render 'partials/suggestions' %>
+		</div>
+		<div class="well">
+			<ul>
+				Chat
+				<% @users.each do |user| %>
+			  	<li><%= link_to user.name, conversations_path(user_id: user), remote: true, method: :post %></li>
+      	<% end %>
+			</ul>
+		</div>
 	</div>
 </div>

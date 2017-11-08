@@ -4,6 +4,7 @@ class HomeController < ApplicationController
   	# @tweets = Tweet.order('created_at DESC')
   	@tweet = current_user.tweets.build if signed_in?
     @feed_items = current_user.feed.order('created_at DESC')
+    @suggestions = User.where.not(id: @current_user).order('RANDOM()').limit(3)
 
 
   	@hashtags = SimpleHashtag::Hashtag.order('created_at DESC')
