@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   def index
   	# @tweets = Tweet.order('created_at DESC')
   	@tweet = current_user.tweets.build if signed_in?
-    @feed_items = current_user.feed
+    @feed_items = current_user.feed.order('created_at DESC')
 
 
   	@hashtags = SimpleHashtag::Hashtag.order('created_at DESC')

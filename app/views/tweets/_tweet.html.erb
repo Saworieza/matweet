@@ -1,5 +1,5 @@
 <div>
-  <div>Posted by <%= tweet.user.username %></div>
+  <div>tweeted by <%= tweet.user.username %></div>
   <p>
   	<%= auto_link(parse(truncate(tweet.body, :ommision => "... Read More", :length => 100)), html: { target: '_blank' }) %> <br>
      <% tweet.images.each do |image| # for each image %>
@@ -12,5 +12,29 @@
     <%= render 'partials/comments', tweet: tweet %>
     <%= render 'partials/retweet', tweet: tweet %>
   	<%= render 'partials/likes', tweet: tweet %>
+  </div>
+  <div class="post-bottom">
+    <div class="caption">
+      <!-- <div class="caption-content">
+        <div class="user-name">
+          <%#= tweet.user.username %>
+        </div>
+      </div> -->
+      <div class="comments" id="comments_<%= tweet.id %>">
+        <% if tweet.comments %>
+          <%= render tweet.comments, tweet: tweet %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="comment-like-form row">
+    <div class="like-button col-sm-1">
+      <span class="glyphicon glyphicon-heart-empty"></span>
+    </div>
+    <div class="comment-form col-sm-11">
+      <%= form_for([tweet, tweet.comments.build], remote: true) do |f| %>
+        <%= f.text_field :content, placeholder: 'Add a comment...', class: "comment_content", id: "comment_content_#{tweet.id}" %>
+      <% end %>
+    </div>
   </div>
 </div>

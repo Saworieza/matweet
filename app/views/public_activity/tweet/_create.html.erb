@@ -1,0 +1,5 @@
+<% if activity.trackable %>
+	tweeted <%= link_to activity.trackable.body, activity.trackable %>
+<% else %>
+	which has since been removed
+<% end %>

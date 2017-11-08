@@ -1,43 +1,43 @@
 class CommentsController < ApplicationController
-before_action :find_commentable
-before_action :authenticate_user!
+	before_action :set_tweet
 
-    def new
-      @comment = Comment.new
+	def create
+    @comment = @tweet.comments.build(comment_params)
+    @comment.user_id = current_user.id
+
+    if @comment.save
+      @comment.create_activity :create, owner: current_user
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.js
+      end
+    else
+      flash[:alert] = "Check the comment form, something went wrong."
+      render root_path
     end
+  end
 
-    def create
-      @comment = @commentable.comments.new comment_params
-      @comment.user = current_user
-      if @comment.save
-        # create_notification @commentable, @comment
-        respond_to do |format|
-          format.html do
-            redirect_to :back, notice: 'Your comment was successfully posted!'
-          end
-          format.js
-        end
-      else
-        redirect_to :back, notice: "Your comment wasn't posted!"
+	def destroy
+    @comment = @tweet.comments.find(params[:id])
+
+    if @comment.user_id == current_user.id
+      @comment.delete
+      @comment.create_activity :delete, owner: current_user
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.js
       end
     end
-
-    private
-
-    # def create_notification(commentable, comment)
-    #   return if commentable.user.id == current_user.id 
-    #   Notification.create(user_id: commentable.user.id, notified_by_id: current_user.id, commentable_id: commentable.id, notice_type: 'comment')
-    # end
+  end
 
 
+	private
 
-    def comment_params
-      params.require(:comment).permit(:body, :user_id)
-    end
+  def comment_params
+    params.require(:comment).permit(:content)
+  end
 
-    def find_commentable
-      @commentable = Comment.find_by_id(params[:comment_id]) if params[:comment_id]
-      @commentable = Tweet.find_by_id(params[:tweet_id]) if params[:tweet_id]
-    end
-
+  def set_tweet
+    @tweet = Tweet.find(params[:tweet_id])
+  end
 end

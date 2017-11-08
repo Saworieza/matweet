@@ -12,7 +12,7 @@
         <%= link_to root_url, class: "" do %>
           <i class="fa fa-home"></i> Home 
         <% end %>
-        <%= link_to root_path, class: "" do %>
+        <%= link_to activities_path, class: "" do %>
           <i class="fa fa-bell-o"> </i> Notifications
         <% end %>
         <%= link_to messages_path, class: "" do %>
@@ -46,5 +46,5 @@
   </div>
 </nav>
 <% else %>
-  <li><%= link_to('Sign out', new_user_session_path) %></li>
+  <!-- <li><%#= link_to('Sign out', new_user_session_path) %></li> -->
 <% end %>

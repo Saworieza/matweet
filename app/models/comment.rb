@@ -1,8 +1,10 @@
 class Comment < ApplicationRecord
+	# include PublicActivity::Model
+	# tracked except: :update, owner: ->(controller, model) { controller && controller.current_user }
+	include PublicActivity::Common
 
   belongs_to :user
   belongs_to :tweet
 
-  belongs_to :commentable, polymorphic: true
-  has_many :comments, as: :commentable
+  has_many :notifications, dependent: :destroy
 end

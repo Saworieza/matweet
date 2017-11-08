@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'messages', to: 'messages#index', as: :messages
 
   root to: "home#index"
@@ -26,6 +27,7 @@ Rails.application.routes.draw do
   # resources :messages, only: [:create]
   end
 
+  resources :activities
   resources :users do
     member do
       get :following, :followers
